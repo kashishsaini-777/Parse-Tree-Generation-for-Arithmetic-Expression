@@ -1,61 +1,58 @@
+🌳 Arithmetic Expression Parse Tree Generator 🌳
+This project provides a web-based tool, built with Streamlit, to generate a visual parse tree from an arithmetic expression. It serves as a great interactive demonstration of the initial stages of a compiler, including lexical and syntax analysis.
 
-# Arithmetic Expression Parse Tree Generator 
+✨ Features
+Interactive Web UI: A simple and clean web interface built with Streamlit.
 
-This project is a simple compiler tool that takes an arithmetic expression as input, performs lexical and syntax analysis, and generates a visual parse tree. It's a great demonstration of the initial stages of a compiler.
+Lexical Analysis: Converts the input string into a stream of tokens, displayed in a clean format.
 
-## Features
+Syntax Analysis: Builds a parse tree based on a context-free grammar.
 
-  * **Lexical Analysis**: Converts the input string into a stream of tokens.
-  * **Syntax Analysis**: Builds a parse tree based on a context-free grammar.
-  * **Operator Support**: Handles addition (`+`), subtraction (`-`), multiplication (`*`), and division (`/`).
-  * **Parentheses**: Correctly interprets expressions within parentheses `( )` to manage precedence.
-  * **Visualization**: Uses Graphviz to render the parse tree as a PNG image, which opens automatically.
-  * **Error Handling**: Provides user-friendly messages for syntax or lexical errors.
+Operator Support: Handles addition (+), subtraction (-), multiplication (*), and division (/).
 
------
+Parentheses: Correctly interprets expressions within parentheses ( ) to manage operator precedence.
 
-## Project Structure
+Instant Visualization: Uses Graphviz to render the parse tree and displays it directly in the web app.
 
+Error Handling: Provides user-friendly error messages for syntax or lexical mistakes.
+
+Deployable: Ready to be deployed for free on Streamlit Community Cloud.
+
+📂 Project Structure
 The project is organized into modular Python scripts for clarity and maintainability.
 
-```
 compiler_project/
-├── main.py          # Main script to run the program
+├── app.py           # The Streamlit web application script
 ├── lexer.py         # Handles lexical analysis (tokenizing)
-├── syntax_parser.py        # Handles syntax analysis (tree building)
+├── syntax_parser.py # Handles syntax analysis (tree building)
 ├── visualizer.py    # Handles tree visualization with Graphviz
-└── requirements.txt   # Lists project dependencies
-```
+├── requirements.txt   # Lists Python dependencies for pip
+└── packages.txt     # Lists system-level dependencies for Streamlit Cloud
 
------
-
-## Prerequisites
-
+Prerequisites
 Before you begin, ensure you have the following installed on your system:
 
-1.  **Python 3.6+**: You can download it from [python.org](https://www.python.org/).
-2.  **Graphviz**: This is a command-line tool required for rendering the tree image.
-      * **Windows**: Download from the [official site](https://graphviz.org/download/). **Important**: Make sure to add Graphviz to your system's PATH during installation.
-      * **macOS**: `brew install graphviz`
-      * **Linux (Ubuntu/Debian)**: `sudo apt-get install graphviz`
+Python 3.7+: You can download it from python.org.
 
------
+Graphviz: This is the underlying engine required for rendering the tree image.
 
-## ⚙️ Setup and Installation
+Windows: Download from the official site. Important: Make sure to add Graphviz to your system's PATH during installation.
 
+macOS: brew install graphviz
+
+Linux (Ubuntu/Debian): sudo apt-get install graphviz
+
+⚙️ Setup and Installation
 Follow these steps to get the project running on your local machine.
 
-**1. Clone the repository (or create the files):**
+1. Clone the repository (or create the files):
 
-```bash
 git clone <your-repository-url>
 cd compiler_project
-```
 
-**2. Create and activate a virtual environment:**
+2. Create and activate a virtual environment:
 This step isolates the project's dependencies from your system's Python installation.
 
-```bash
 # Create the virtual environment
 python -m venv venv
 
@@ -64,77 +61,50 @@ python -m venv venv
 venv\Scripts\activate
 # On macOS/Linux:
 source venv/bin/activate
-```
 
-**3. Install the required Python packages:**
+3. Install the required Python packages:
 
-```bash
 pip install -r requirements.txt
-```
 
------
+4. Create an output directory:
+The application needs a directory to temporarily store the generated images.
 
-## ▶️ How to Run
+mkdir output
 
-Once the setup is complete, you can run the main script from your terminal:
+▶️ How to Run Locally
+Once the setup is complete, run the Streamlit app from your terminal:
 
-```bash
-python main.py
-```
+streamlit run app.py
 
-The program will start and prompt you to enter an arithmetic expression.
+Your default web browser will automatically open a new tab with the running application.
 
------
+🚀 How to Deploy
+You can deploy this application for free using Streamlit Community Cloud.
 
-## Usage Example
+1. Push to GitHub:
+Make sure your entire project, including requirements.txt and packages.txt, is pushed to a public GitHub repository.
 
-After running the application, you can interact with it as shown below.
+2. Deploy on Streamlit Cloud:
 
-**1. Start the program:**
+Go to share.streamlit.io and sign in with your GitHub account.
 
-```bash
-$ python main.py
- Arithmetic Expression Parse Tree Generator
-Enter an expression (e.g., '3 * (4 + 2)') or type 'exit' to quit.
-```
+Click "New app" and select your repository.
 
-**2. Enter an expression:**
+Ensure the "Main file path" is set to app.py.
 
-```bash
->>> 5 * (10 - 2)
-```
+Click "Deploy!".
 
-**3. See the output:**
-The terminal will show the token stream and a success message.
+Streamlit will automatically install the system packages from packages.txt and the Python packages from requirements.txt and launch your app.
 
-```
-Tokens: [{'kind': 'NUMBER', 'value': '5'}, {'kind': 'MULTIPLY', 'value': '*'}, {'kind': 'LPAREN', 'value': '('}, {'kind': 'NUMBER', 'value': '10'}, {'kind': 'MINUS', 'value': '-'}, {'kind': 'NUMBER', 'value': '2'}, {'kind': 'RPAREN', 'value': ')'}]
-Successfully generated parse tree at: parse_tree.png
-```
+📄 File Descriptions
+app.py: The main entry point for the Streamlit web application. It defines the UI and orchestrates the calls to the other modules.
 
-An image file named `parse_tree.png` will be created in your project directory and will automatically open for you to view.
+lexer.py: Contains the tokenize function, which performs lexical analysis.
 
-**4. Handling errors:**
-If you enter an invalid expression, the program will catch it and display an error.
+syntax_parser.py: Implements a recursive descent parser to build the parse tree from tokens. (Formerly parser.py).
 
-```bash
->>> 5 + * 2
-💥 Syntax Error: Unexpected token {'kind': 'MULTIPLY', 'value': '*'}
-```
+visualizer.py: Uses the graphviz library to render the parse tree into a PNG file and returns the file path.
 
-**5. Exit the program:**
-To stop the application, simply type `exit` and press Enter.
+requirements.txt: A list of the Python packages (e.g., streamlit, graphviz) required for the project.
 
-```bash
->>> exit
-```
-
------
-
-## File Descriptions
-
-  * `main.py`: The entry point for the application. It handles user input and orchestrates the calls to the lexer, parser, and visualizer.
-  * `lexer.py`: Contains the `tokenize` function, which performs lexical analysis using regular expressions to convert the input string into a list of tokens.
-  * `parser.py`: Implements a recursive descent parser. It takes the token list and builds an abstract syntax tree based on the defined grammar rules for arithmetic expressions.
-  * `visualizer.py`: Uses the `graphviz` library to traverse the generated parse tree and render it into a visually appealing graph, saved as a PNG file.
-  * `requirements.txt`: A list of the Python packages required for the project to run.
+packages.txt: A list of system-level dependencies (graphviz) needed by the Streamlit Cloud deployment environment.
