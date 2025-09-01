@@ -1,110 +1,144 @@
-🌳 Arithmetic Expression Parse Tree Generator 🌳
-This project provides a web-based tool, built with Streamlit, to generate a visual parse tree from an arithmetic expression. It serves as a great interactive demonstration of the initial stages of a compiler, including lexical and syntax analysis.
 
-✨ Features
-Interactive Web UI: A simple and clean web interface built with Streamlit.
+# 🌳 Arithmetic Expression Parse Tree Generator 🌳
 
-Lexical Analysis: Converts the input string into a stream of tokens, displayed in a clean format.
+This project provides a **web-based tool**, built with **Streamlit**, to generate a **visual parse tree** from an arithmetic expression.  
+It serves as a great interactive demonstration of the initial stages of a **compiler**, including **lexical analysis** and **syntax analysis**.
 
-Syntax Analysis: Builds a parse tree based on a context-free grammar.
+---
 
-Operator Support: Handles addition (+), subtraction (-), multiplication (*), and division (/).
+## ✨ Features
+- **Interactive Web UI**: Simple and clean interface built with Streamlit.  
+- **Lexical Analysis**: Converts the input string into a stream of tokens, displayed neatly.  
+- **Syntax Analysis**: Builds a parse tree based on a context-free grammar.  
+- **Operator Support**: Handles addition `+`, subtraction `-`, multiplication `*`, and division `/`.  
+- **Parentheses Handling**: Correctly interprets `( )` for operator precedence.  
+- **Instant Visualization**: Uses Graphviz to render and display the parse tree.  
+- **Error Handling**: User-friendly error messages for syntax or lexical issues.  
+- **Deployable**: Ready to run locally or on **Streamlit Community Cloud** for free.  
 
-Parentheses: Correctly interprets expressions within parentheses ( ) to manage operator precedence.
+---
 
-Instant Visualization: Uses Graphviz to render the parse tree and displays it directly in the web app.
-
-Error Handling: Provides user-friendly error messages for syntax or lexical mistakes.
-
-Deployable: Ready to be deployed for free on Streamlit Community Cloud.
-
-📂 Project Structure
-The project is organized into modular Python scripts for clarity and maintainability.
-
+## 📂 Project Structure
+```bash
 compiler_project/
-├── app.py           # The Streamlit web application script
-├── lexer.py         # Handles lexical analysis (tokenizing)
-├── syntax_parser.py # Handles syntax analysis (tree building)
-├── visualizer.py    # Handles tree visualization with Graphviz
-├── requirements.txt   # Lists Python dependencies for pip
-└── packages.txt     # Lists system-level dependencies for Streamlit Cloud
+├── app.py            # The Streamlit web application script
+├── lexer.py          # Handles lexical analysis (tokenizing)
+├── syntax_parser.py  # Handles syntax analysis (tree building)
+├── visualizer.py     # Handles tree visualization with Graphviz
+├── requirements.txt  # Lists Python dependencies
+└── packages.txt      # Lists system-level dependencies for Streamlit Cloud
+````
 
-Prerequisites
-Before you begin, ensure you have the following installed on your system:
+---
 
-Python 3.7+: You can download it from python.org.
+## 🛠️ Prerequisites
 
-Graphviz: This is the underlying engine required for rendering the tree image.
+Ensure the following are installed on your system:
 
-Windows: Download from the official site. Important: Make sure to add Graphviz to your system's PATH during installation.
+* **Python 3.7+** → [Download here](https://www.python.org/downloads/)
+* **Graphviz** (required for rendering parse trees)
 
-macOS: brew install graphviz
+  * **Windows**: [Download here](https://graphviz.org/download/) → Add Graphviz to PATH during installation
+  * **macOS**:
 
-Linux (Ubuntu/Debian): sudo apt-get install graphviz
+    ```bash
+    brew install graphviz
+    ```
+  * **Linux (Ubuntu/Debian)**:
 
-⚙️ Setup and Installation
-Follow these steps to get the project running on your local machine.
+    ```bash
+    sudo apt-get install graphviz
+    ```
 
-1. Clone the repository (or create the files):
+---
 
-git clone <your-repository-url>
-cd compiler_project
+## ⚙️ Setup and Installation
 
-2. Create and activate a virtual environment:
-This step isolates the project's dependencies from your system's Python installation.
+1. **Clone the repository** (or create the files manually):
 
-# Create the virtual environment
-python -m venv venv
+   ```bash
+   git clone <your-repository-url>
+   cd compiler_project
+   ```
 
-# Activate it
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
+2. **Create and activate a virtual environment**:
 
-3. Install the required Python packages:
+   ```bash
+   # Create the virtual environment
+   python -m venv venv
 
-pip install -r requirements.txt
+   # Activate it
+   # On Windows:
+   venv\Scripts\activate
+   # On macOS/Linux:
+   source venv/bin/activate
+   ```
 
-4. Create an output directory:
-The application needs a directory to temporarily store the generated images.
+3. **Install dependencies**:
 
-mkdir output
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-▶️ How to Run Locally
-Once the setup is complete, run the Streamlit app from your terminal:
+4. **Create an output directory** (for generated images):
 
+   ```bash
+   mkdir output
+   ```
+
+---
+
+## ▶️ Run Locally
+
+Start the Streamlit app with:
+
+```bash
 streamlit run app.py
+```
 
-Your default web browser will automatically open a new tab with the running application.
+Your browser will open automatically with the running application.
 
-🚀 How to Deploy
-You can deploy this application for free using Streamlit Community Cloud.
+---
 
-1. Push to GitHub:
-Make sure your entire project, including requirements.txt and packages.txt, is pushed to a public GitHub repository.
+## 🚀 Deploy on Streamlit Community Cloud
 
-2. Deploy on Streamlit Cloud:
+1. **Push to GitHub**
+   Ensure your repository includes `requirements.txt` and `packages.txt`.
 
-Go to share.streamlit.io and sign in with your GitHub account.
+2. **Deploy**
 
-Click "New app" and select your repository.
+   * Go to [Streamlit Cloud](https://share.streamlit.io/) and sign in.
+   * Click **New app** → Select your GitHub repo.
+   * Set **Main file path** to `app.py`.
+   * Click **Deploy!**
 
-Ensure the "Main file path" is set to app.py.
+Streamlit will automatically install system packages from **packages.txt** and Python packages from **requirements.txt**, then launch your app.
 
-Click "Deploy!".
+---
 
-Streamlit will automatically install the system packages from packages.txt and the Python packages from requirements.txt and launch your app.
+## 📄 File Descriptions
 
-📄 File Descriptions
-app.py: The main entry point for the Streamlit web application. It defines the UI and orchestrates the calls to the other modules.
+* **app.py** → Entry point of the Streamlit app (UI + integration).
+* **lexer.py** → Implements lexical analysis (tokenization).
+* **syntax\_parser.py** → Recursive descent parser to build the parse tree.
+* **visualizer.py** → Renders the parse tree using Graphviz.
+* **requirements.txt** → Python dependencies (e.g., `streamlit`, `graphviz`).
+* **packages.txt** → System-level dependencies (`graphviz`) for deployment.
 
-lexer.py: Contains the tokenize function, which performs lexical analysis.
+---
 
-syntax_parser.py: Implements a recursive descent parser to build the parse tree from tokens. (Formerly parser.py).
+## 🌟 Example
 
-visualizer.py: Uses the graphviz library to render the parse tree into a PNG file and returns the file path.
+Input:
 
-requirements.txt: A list of the Python packages (e.g., streamlit, graphviz) required for the project.
+```
+(3 + 5) * 2 - 8 / 4
+```
 
-packages.txt: A list of system-level dependencies (graphviz) needed by the Streamlit Cloud deployment environment.
+Generated Parse Tree:
+*(Rendered instantly in the app)*
+
+---
+
+💡 This project is perfect for **learning compiler basics**, **teaching parsing concepts**, or just visualizing how arithmetic expressions are processed!
+
